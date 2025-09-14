@@ -8,7 +8,7 @@ public class EnemyMeleeAI : MonoBehaviour
 {
     [Header("movement")]
     public float moveSpeed = 3f;
-    public float stoppingDistance = 0.5f;
+    public float stoppingDistance = 0.01f;
     public float acceleration = 5f;
 
     private Transform Target;
