@@ -9,6 +9,9 @@ public class PlayerSwordAttack : MonoBehaviour
     [Header("Attack Settings")]
     public float attackDuration = 0.3f; // total swing time
     public float swingAngle = 90f;      // arc angle of the swing
+    [Header("Upgrades")]
+    public bool canReflectBullets = false;
+    public Transform aimPivot;
 
     private bool attacking = false;
     private PlayerInput playerInput;
@@ -40,17 +43,17 @@ public class PlayerSwordAttack : MonoBehaviour
     {
         if (attacking) return;
 
-        // ✅ Mouse input
+        //  Mouse input
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             StartCoroutine(SwingSword());
         }
-        // ✅ Controller input (A button, etc. mapped in Input Actions)
+        //  Controller input (A button, etc. mapped in Input Actions)
         else if (attackAction != null && attackAction.WasPressedThisFrame())
         {
             StartCoroutine(SwingSword());
         }
-        // ✅ Keyboard input (manual key)
+        //  Keyboard input (manual key)
         else if (Keyboard.current.kKey.wasPressedThisFrame)
         {
             StartCoroutine(SwingSword());
@@ -73,16 +76,41 @@ public class PlayerSwordAttack : MonoBehaviour
     }
 
     // This detects when sword hits something
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (attacking)
+        if (!attacking) return;
+
+        // damage enemies
+        Health target = other.GetComponent<Health>();
+        if (target != null && other.CompareTag("Enemy"))
         {
-            Health target = other.GetComponent<Health>();
-            if (target != null && other.CompareTag("Enemy"))
+            target.TakeDamage(1);
+        }
+
+        // bullet reflection
+        if (other.CompareTag("EnemyBullet"))
+        {
+            if (canReflectBullets)
+            {
+                Rigidbody2D brb = other.GetComponent<Rigidbody2D>();
+                if (brb != null)
                 {
-                    target.TakeDamage(1);
+                    Vector2 aimDir = (aimPivot.right).normalized;
+                    other.tag = "playerBullet";
+
+                    //retargeting
+                    EnemyBullet eb = other.GetComponent<EnemyBullet>();
+                    if (eb != null) eb.Redirect(aimDir);
                 }
+
+            }
+            else
+            {
+                // destroy bullet if not reflecting
+                Destroy(other.gameObject);
+            }
+
         }
     }
 }

@@ -22,10 +22,11 @@ public class PlayerDash : MonoBehaviour
 
     private void Awake()
     {
+        // Cache components
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         movementScript = GetComponent<PlayerMovement>();
-
+        // Setup input actions
         if (playerInput != null)
         {
             var actions = playerInput.actions;
@@ -39,8 +40,8 @@ public class PlayerDash : MonoBehaviour
 
     private void Update()
     {
+        // Handle dash input
         if (!canDash || dashAction == null) return;
-
         if (dashAction.WasPressedThisFrame())
         {
             Vector2 startDir = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
@@ -52,6 +53,7 @@ public class PlayerDash : MonoBehaviour
     }
     private System.Collections.IEnumerator DashRoutine(Vector2 startDirection)
     {
+        // start dash
         canDash = false;
         isDashing = true;
         // make player invincible during dash
@@ -69,6 +71,7 @@ public class PlayerDash : MonoBehaviour
 
         while (elapsed < dashDuration)
         {
+            // calculate final dash direction with steering
             Vector2 steer = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
             Vector2 finalDir = ((1f - steeringFactor) * dashBaseDir + steeringFactor * steer).normalized;
 
@@ -85,7 +88,7 @@ public class PlayerDash : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-
+        // end dash
         rb.linearVelocity = Vector2.zero;
         transform.localScale = originalScale;
         isDashing = false;
