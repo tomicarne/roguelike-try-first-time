@@ -10,6 +10,10 @@ public class PlayerDash : MonoBehaviour
     public float dashCooldown = 1f;
     [Range(0f, 1f)] public float steeringFactor = 0.2f; // 0 = locked, 1 = fully steerable
 
+    [Header("Visual References")]
+    public Transform visuals;
+    public Transform aimPivot;
+
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     private InputAction dashAction;
@@ -19,6 +23,9 @@ public class PlayerDash : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
     public bool IsDashing => isDashing;
+
+    private Vector3 originalVisualsScale;
+    private Vector3 originalAimPivotScale;
 
     private void Awake()
     {
@@ -36,6 +43,8 @@ public class PlayerDash : MonoBehaviour
                 moveAction = actions["Move"];
             }
         }
+        if (visuals != null) originalVisualsScale = visuals.localScale;
+        if (aimPivot != null) originalAimPivotScale = aimPivot.localScale;
     }
 
     private void Update()
@@ -65,36 +74,72 @@ public class PlayerDash : MonoBehaviour
 
         Vector2 dashBaseDir = startDirection.normalized;
         float elapsed = 0f;
-
-        // save original scale
-        Vector3 originalScale = transform.localScale;
-
         while (elapsed < dashDuration)
         {
-            // calculate final dash direction with steering
+            // Calcular dirección final del dash con steering
             Vector2 steer = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
             Vector2 finalDir = ((1f - steeringFactor) * dashBaseDir + steeringFactor * steer).normalized;
 
+            // Mover el Rigidbody (física)
             rb.linearVelocity = finalDir * dashSpeed;
 
-            // stretch effect
-            float stretchAmount = 1.5f; // adjust for more/less stretch
-            float squashAmount = 0.7f; // adjust for more/less squash
-            float angle = Mathf.Atan2(finalDir.y, finalDir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-
-            transform.localScale = new Vector3(originalScale.x * stretchAmount, originalScale.y * squashAmount, originalScale.z);
+            // Aplicar efectos visuales SOLO en el GameObject Visuals
+            ApplyDashVisualEffects(finalDir);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
         // end dash
         rb.linearVelocity = Vector2.zero;
-        transform.localScale = originalScale;
+        ResetDashVisualEffects();
         isDashing = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+    private void ApplyDashVisualEffects(Vector2 dashDirection)
+    {
+        if (visuals == null) return;
+
+        // Efecto de estiramiento
+        float stretchAmount = 1.5f;
+        float squashAmount = 0.5f;
+
+        // Calcular la escala basada en la dirección del dash
+        Vector3 dashScale = new Vector3(
+            originalVisualsScale.x * stretchAmount,
+            originalVisualsScale.y * squashAmount,
+            originalVisualsScale.z
+        );
+
+        // Aplicar escala al Visuals
+        visuals.localScale = dashScale;
+
+        // Rotar el aimPivot para que apunte en la dirección del dash
+        if (aimPivot != null)
+        {
+            float angle = Mathf.Atan2(dashDirection.y, dashDirection.x) * Mathf.Rad2Deg;
+            aimPivot.rotation = Quaternion.Euler(0, 0, angle);
+        }
+    }
+    private void ResetDashVisualEffects()
+    {
+        // Resetear escala del Visuals
+        if (visuals != null)
+            visuals.localScale = originalVisualsScale;
+
+        // El aimPivot se reseteará automáticamente por PlayerAiming en el próximo Update
+    }
+    public void InterruptDash()
+    {
+        if (isDashing)
+        {
+            StopAllCoroutines();
+            rb.linearVelocity = Vector2.zero;
+            ResetDashVisualEffects();
+            isDashing = false;
+            canDash = true;
+        }
     }
 
 }

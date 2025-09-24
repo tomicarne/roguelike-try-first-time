@@ -1,27 +1,30 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 public class PlayerSwordAttack : MonoBehaviour
 {
     [Header("References")]
-    public GameObject swordHitbox; // assign in inspector
+    public GameObject swordHitbox;
     private Collider2D swordCollider;
+    public Animator animator; // Now references the SpriteObject's animator
+    public Transform aimPivot; // Reference to the AimPivot
 
     [Header("Attack Settings")]
-    public float attackDuration = 0.3f; // total swing time
-    public float swingAngle = 90f;      // arc angle of the swing
+    public float attackDuration = 0.3f;
+    public float attackDistance = 1f;
     [Header("Upgrades")]
     public bool canReflectBullets = false;
-    public Transform aimPivot;
 
     private bool attacking = false;
     private PlayerInput playerInput;
     private InputAction attackAction;
+    private SpriteRenderer spriteRenderer;
     void Start()
     {
         swordHitbox.SetActive(false);
         swordCollider = swordHitbox.GetComponent<Collider2D>();
-        swordCollider.enabled = false; // make sure it's off at start
-                // Get PlayerInput component (must be on the Player GameObject)
+        swordCollider.enabled = false;
+        
         playerInput = GetComponent<PlayerInput>();
 
         // Access the "Attack" action (must exist in Input Actions asset)
@@ -66,13 +69,29 @@ public class PlayerSwordAttack : MonoBehaviour
         swordCollider.enabled = true;
         swordHitbox.SetActive(true);
         // Place the hitbox fixed in front of the player
-        swordHitbox.transform.localPosition = new Vector3(1f, 0f, 0f);
+        PositionSwordHitbox();
 
         // Keep attack window open
         yield return new WaitForSeconds(attackDuration);
         swordHitbox.SetActive(false);
         swordCollider.enabled = false;
         attacking = false;
+    }
+
+    private void PositionSwordHitbox()
+    {
+        if (aimPivot == null) return;
+        
+        Vector2 attackDirection = aimPivot.right;
+        swordHitbox.transform.position = aimPivot.position + (Vector3)(attackDirection * attackDistance);
+
+        float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+        swordHitbox.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    private Vector2 GetAimDirection()
+    {
+        return aimPivot.right;
     }
 
     // This detects when sword hits something
@@ -96,7 +115,7 @@ public class PlayerSwordAttack : MonoBehaviour
                 Rigidbody2D brb = other.GetComponent<Rigidbody2D>();
                 if (brb != null)
                 {
-                    Vector2 aimDir = (aimPivot.right).normalized;
+                    Vector2 aimDir = GetAimDirection();
                     other.tag = "playerBullet";
 
                     //retargeting
