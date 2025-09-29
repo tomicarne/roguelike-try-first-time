@@ -117,6 +117,8 @@ GameObject:
   - component: {fileID: 7101421389341557324}
   - component: {fileID: 3167039416802467160}
   - component: {fileID: 7829389944078563734}
+  - component: {fileID: -2883009339672953868}
+  - component: {fileID: 535953542445391492}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -185,7 +187,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7433963, g: 0.17813455, b: 0.17813455, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -296,6 +298,7 @@ MonoBehaviour:
   maxHealth: 3
   invincibilityDuration: 0.5
   healthText: {fileID: 28722619748736302}
+  currentRoom: {fileID: 0}
 --- !u!114 &7829389944078563734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +314,34 @@ MonoBehaviour:
   moveSpeed: 3
   stoppingDistance: 1
   acceleration: 5
+  isActive: 1
+  animator: {fileID: 0}
+--- !u!114 &-2883009339672953868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3804512862755928018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4583e868680b14e875a4aef99fa71f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &535953542445391492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3804512862755928018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944d30747e343484ca63f85dfe75c448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  isActive: 0
 --- !u!1 &6332101008592695851
 GameObject:
   m_ObjectHideFlags: 0

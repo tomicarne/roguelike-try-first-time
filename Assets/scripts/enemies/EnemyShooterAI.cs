@@ -13,7 +13,11 @@ public class EnemyShooterAI : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed = 10f;
     public float fireCooldown = 1.5f;
+    [Header("Visuals / Animation")]
+    public Animator animator;       // assign in Inspector
+    private Vector2 lastAimDir = Vector2.right;
 
+    public bool isActive = false;
     private Rigidbody2D rb;
     private Transform Target;
     private float lastFireTime;
@@ -24,14 +28,25 @@ public class EnemyShooterAI : MonoBehaviour
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
             Target = playerObj.transform;
+        RoomController room = GetComponentInParent<RoomController>();
+            if (room != null)
+        room.RegisterEnemy(gameObject);
+    }
+    public void Activate(Transform player)
+    {
+        Target = player;
+        isActive = true;
     }
 
     private void FixedUpdate()
     {
         if (Target == null) return;
+        if (!isActive || Target == null) return;
 
         Vector2 toPlayer = Target.position - transform.position;
         float distance = toPlayer.magnitude;
+        Vector2 aimDir = toPlayer.normalized;
+        lastAimDir = aimDir;
 
         // mantener una cierta distancia
         Vector2 desiredVel = Vector2.zero;
@@ -49,6 +64,12 @@ public class EnemyShooterAI : MonoBehaviour
         //mirar al jugador
         float angle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
+
+        if (animator != null)
+    {
+        animator.SetFloat("Horizontal", aimDir.x);
+        animator.SetFloat("Vertical",   aimDir.y);
+    }
 
         // disparar si es posible
         if (Time.time - lastFireTime >= fireCooldown && distance <= preferredDistance + 2f)

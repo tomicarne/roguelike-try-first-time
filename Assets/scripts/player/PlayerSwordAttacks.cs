@@ -8,17 +8,21 @@ public class PlayerSwordAttack : MonoBehaviour
     private Collider2D swordCollider;
     public Animator animator; // Now references the SpriteObject's animator
     public Transform aimPivot; // Reference to the AimPivot
+    public BoomerangSword boomerang;
 
     [Header("Attack Settings")]
     public float attackDuration = 0.3f;
     public float attackDistance = 1f;
     [Header("Upgrades")]
     public bool canReflectBullets = false;
+    public bool canThrowSword = false;
 
     private bool attacking = false;
     private PlayerInput playerInput;
     private InputAction attackAction;
     private SpriteRenderer spriteRenderer;
+    [HideInInspector] public bool isThrowing = false;
+
     void Start()
     {
         swordHitbox.SetActive(false);
@@ -44,7 +48,7 @@ public class PlayerSwordAttack : MonoBehaviour
 
     void Update()
     {
-        if (attacking) return;
+        if (attacking || isThrowing) return;
 
         //  Mouse input
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
@@ -60,6 +64,13 @@ public class PlayerSwordAttack : MonoBehaviour
         else if (Keyboard.current.kKey.wasPressedThisFrame)
         {
             StartCoroutine(SwingSword());
+        }
+        if (canThrowSword &&Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Debug.Log("trhown");
+            Vector2 throwDir = aimPivot.right.normalized;
+            boomerang.gameObject.SetActive(true);
+            boomerang.Throw(transform, this, throwDir);
         }
     }
 

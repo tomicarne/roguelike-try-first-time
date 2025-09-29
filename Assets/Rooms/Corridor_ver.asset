@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e73caade76faa84aa54625225108226, type: 3}
+  m_Name: Corridor_ver
+  m_EditorClassIdentifier: 
+  roomName: 
+  prefab: {fileID: 4988406652153088383, guid: 686c4055a2c42ca4e8e37b8daa4d5bca, type: 3}
+  doorNorth: 1
+  doorSouth: 1
+  doorEast: 0
+  doorWest: 0
+  difficulty: 1
+  roomType: 1
+  commonWeight: 1
+  rareWeight: 0.1
+  minEnemies: 2
+  maxEnemies: 4
+  enemyPrefabs:
+  - {fileID: 2279573510292398671, guid: 82ff93a268a293940804d4f679af34b9, type: 3}
+  - {fileID: 296458371242838279, guid: a399571e95626a8459ebb502681ae657, type: 3}
