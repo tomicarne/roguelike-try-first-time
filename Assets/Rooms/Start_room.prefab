@@ -555,6 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: 0
+  template: {fileID: 11400000, guid: 1f8df4651b9808a4ba13f3dfa435cd07, type: 2}
   northDoor: {fileID: 8416589833954216755}
   southDoor: {fileID: 7184047672688880576}
   eastDoor: {fileID: 2353962189229187978}
@@ -562,6 +563,8 @@ MonoBehaviour:
   openDoorMaterial: {fileID: 2100000, guid: 85e16aadb417912499edb8594fd72b71, type: 2}
   closedDoorMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   enemiesInRoom: []
+  spawnPoints: []
+  spawnDelay: 0.3
 --- !u!1 &2353962189229187978
 GameObject:
   m_ObjectHideFlags: 0
