@@ -7,7 +7,7 @@ public class EnemyHealth : Health
     {
         Debug.Log(gameObject.name + " (Enemy) died!");
         if (currentRoom != null)
-            currentRoom.UnregisterEnemy(gameObject);
+        currentRoom.UnregisterEnemy(transform.root.gameObject);
         else
             Debug.LogWarning($"{name} died but had no RoomController reference.");
         Destroy(transform.root.gameObject);

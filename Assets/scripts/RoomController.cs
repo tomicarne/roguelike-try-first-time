@@ -47,6 +47,19 @@ public class RoomController : MonoBehaviour
         }
         // If this is a combat room and there are enemies, close doors
         CloseAllDoors();
+        if (playerInside && enemiesInRoom.Count <= 1)
+        {
+            OpenAllDoors();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        enemiesInRoom.RemoveAll(e => e == null);
+        if (playerInside && enemiesInRoom.Count <= 1)
+        {
+            OpenAllDoors();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -64,15 +77,14 @@ public class RoomController : MonoBehaviour
 
     public void UnregisterEnemy(GameObject enemy)
     {
-        if (playerInside && enemiesInRoom.Count <= 1)
-        {
-            OpenAllDoors();
-        }
+
         enemiesInRoom.Remove(enemy);
+        enemiesInRoom.RemoveAll(e => e == null);
         if (playerInside && enemiesInRoom.Count <= 1)
         {
             OpenAllDoors();
         }
+        
     }
 
     // ---- Door control ----

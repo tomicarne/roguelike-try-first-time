@@ -18,6 +18,7 @@ MonoBehaviour:
   doorSouth: 1
   doorEast: 1
   doorWest: 1
+  defaultRotation: {x: 0, y: 0, z: -90}
   difficulty: 1
   roomType: 1
   commonWeight: 1

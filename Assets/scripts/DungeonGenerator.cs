@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+
 public class DungeonGenerator : MonoBehaviour
 {
     [Header("Generation Settings")]
@@ -18,20 +19,23 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject secretRoom;
 
     [Header("Room Weights")]
-    [Range(0,100)] public int shopChance = 10;
-    [Range(0,100)] public int treasureChance = 15;
-    [Range(0,100)] public int secretRoomChance = 5;
+    [Range(0, 100)] public int shopChance = 10;
+    [Range(0, 100)] public int treasureChance = 15;
+    [Range(0, 100)] public int secretRoomChance = 5;
 
     private readonly Dictionary<Vector2Int, RoomNode> roomGrid = new();
     private readonly List<RoomNode> endNodes = new();
     private System.Random rng;
+
+    // Expose a read-only view of the grid so DoorPlacer (or others) can read it
+    public IReadOnlyDictionary<Vector2Int, RoomNode> RoomGrid => roomGrid;
 
     [System.Serializable]
     public class RoomNode
     {
         public Vector2Int gridPosition;
         public GameObject roomInstance;
-    public RoomType roomType = RoomType.Normal;
+        public RoomType roomType = RoomType.Normal;
         public int depth;
         public RoomNode parent;
         public List<RoomNode> children = new();
@@ -56,7 +60,7 @@ public class DungeonGenerator : MonoBehaviour
             depth = 0
         };
         roomGrid[Vector2Int.zero] = startNode;
-        startNode.roomInstance = Instantiate(startRoom, GridToWorld(Vector2Int.zero), Quaternion.identity);
+        startNode.roomInstance = Instantiate(startRoom, GetWorldPosition(Vector2Int.zero), Quaternion.identity);
 
         // --- Branching ---
         var toExpand = new Queue<RoomNode>();
@@ -96,13 +100,20 @@ public class DungeonGenerator : MonoBehaviour
 
         IdentifyCriticalPath();
         PlaceSpecialRooms();
-        SyncDoors();
+
+        // Recompute final doors from the grid adjacency (must happen AFTER layout)
+        RecomputeDoors();
+
         InstantiateAllRooms();
+
+        // Optionally: if you have a DoorPlacer on the same GameObject, call it now
+        var placer = GetComponent<DoorPlacer>();
+        if (placer != null) placer.PlaceDoors();
     }
 
     private int GetBranchCount(int depth)
     {
-        float[] probs = {0.6f, 0.3f, 0.1f};
+        float[] probs = { 0.6f, 0.3f, 0.1f };
         float roll = (float)rng.NextDouble();
         float sum = 0;
         for (int i = 0; i < probs.Length; i++)
@@ -116,7 +127,7 @@ public class DungeonGenerator : MonoBehaviour
     private List<Vector2Int> GetAvailableDirections(Vector2Int pos)
     {
         var dirs = new List<Vector2Int>();
-        foreach (var d in new[]{Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right})
+        foreach (var d in new[] { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right })
             if (!roomGrid.ContainsKey(pos + d)) dirs.Add(d);
         return dirs;
     }
@@ -146,10 +157,10 @@ public class DungeonGenerator : MonoBehaviour
             parent = parent
         };
 
-        if (dir == Vector2Int.up)    { parent.northDoor = true; node.southDoor = true; }
-        if (dir == Vector2Int.down)  { parent.southDoor = true; node.northDoor = true; }
-        if (dir == Vector2Int.right) { parent.eastDoor  = true; node.westDoor  = true; }
-        if (dir == Vector2Int.left)  { parent.westDoor  = true; node.eastDoor  = true; }
+        if (dir == Vector2Int.up) { parent.northDoor = true; node.southDoor = true; }
+        if (dir == Vector2Int.down) { parent.southDoor = true; node.northDoor = true; }
+        if (dir == Vector2Int.right) { parent.eastDoor = true; node.westDoor = true; }
+        if (dir == Vector2Int.left) { parent.westDoor = true; node.eastDoor = true; }
 
         return node;
     }
@@ -168,37 +179,21 @@ public class DungeonGenerator : MonoBehaviour
             farthest = farthest.parent;
         }
 
-        if (farthest != null) farthest.roomType = RoomType.Boss;
+        if (bossNode != null) bossNode.roomType = RoomType.Boss;
     }
-    private void SyncDoors()
-{
-    foreach (var kvp in roomGrid)
-    {
-        Vector2Int pos = kvp.Key;
-        RoomNode node = kvp.Value;
 
-        if (roomGrid.TryGetValue(pos + Vector2Int.up, out var north))
+    private void RecomputeDoors()
+    {
+        foreach (var kvp in roomGrid)
         {
-            node.northDoor = true;
-            north.southDoor = true;
-        }
-        if (roomGrid.TryGetValue(pos + Vector2Int.down, out var south))
-        {
-            node.southDoor = true;
-            south.northDoor = true;
-        }
-        if (roomGrid.TryGetValue(pos + Vector2Int.left, out var west))
-        {
-            node.westDoor = true;
-            west.eastDoor = true;
-        }
-        if (roomGrid.TryGetValue(pos + Vector2Int.right, out var east))
-        {
-            node.eastDoor = true;
-            east.westDoor = true;
+            var pos = kvp.Key;
+            var n = kvp.Value;
+            n.northDoor = roomGrid.ContainsKey(pos + Vector2Int.up);
+            n.southDoor = roomGrid.ContainsKey(pos + Vector2Int.down);
+            n.eastDoor = roomGrid.ContainsKey(pos + Vector2Int.right);
+            n.westDoor = roomGrid.ContainsKey(pos + Vector2Int.left);
         }
     }
-}
 
     private void PlaceSpecialRooms()
     {
@@ -216,52 +211,53 @@ public class DungeonGenerator : MonoBehaviour
     private void InstantiateAllRooms()
     {
         Debug.Log("=== INSTANTIATING ROOMS ===");
+
         foreach (var node in roomGrid.Values)
         {
-
-            if (node.roomInstance != null) { Debug.Log($"  Room at {node.gridPosition} already instantiated (Start room)"); continue; }
-            var prefab = GetRoomPrefab(node);
-            if (prefab == null) continue;
-
-            node.roomInstance = Instantiate(prefab,
-                                            GridToWorld(node.gridPosition),
-                                            Quaternion.identity);
-
-            // --- NEW: hook up doors & template ---
-            var rc = node.roomInstance.GetComponent<RoomController>();
-            Debug.Log($"  ✓ Instantiated {node.roomType} room at {node.gridPosition} with prefab '{prefab.name}'");
-            if (rc != null)
+            if (node.roomInstance != null)
             {
-                rc.roomType = node.roomType;
+                Debug.Log($"Room at {node.gridPosition} already instantiated (start room).");
+                continue;
+            }
 
-                // find a RoomTemplate whose door config matches this node
-                var template = roomTemplates.FirstOrDefault(t =>
-                    t.doorNorth == node.northDoor &&
-                    t.doorSouth == node.southDoor &&
-                    t.doorEast == node.eastDoor &&
-                    t.doorWest == node.westDoor);
+            // choose template & rotation first
+            RoomTemplate template = roomTemplates.FirstOrDefault(t =>
+                t.doorNorth == node.northDoor &&
+                t.doorSouth == node.southDoor &&
+                t.doorEast == node.eastDoor &&
+                t.doorWest == node.westDoor);
 
-                if (template != null)
-                {
-                    node.roomInstance = Instantiate(
-                        template.prefab,
-                        GridToWorld(node.gridPosition),
-                        Quaternion.Euler(template.defaultRotation)
-                    );
-                rc.template = template;
-                Debug.Log($"    Assigned RoomTemplate '{template.roomName}' to RoomController");
+            GameObject prefabToUse;
+            Quaternion rotation = Quaternion.identity;
 
-                // doors start visually open
-                rc.SetDoorsVisualState(true);
-                Debug.Log($"    Connected RoomController, doors set open");
+            if (template != null)
+            {
+                prefabToUse = template.prefab;
+                rotation = Quaternion.Euler(template.defaultRotation);
             }
             else
             {
-                Debug.LogWarning($"    No RoomController found on {node.roomType} prefab '{prefab.name}' at {node.gridPosition}");
+                prefabToUse = GetRoomPrefab(node);
+            }
+
+            if (prefabToUse == null) continue;
+
+            node.roomInstance = Instantiate(prefabToUse,
+                                            GetWorldPosition(node.gridPosition),
+                                            rotation);
+
+            Debug.Log($"✓ Instantiated {node.roomType} at {node.gridPosition} using '{prefabToUse.name}'");
+
+            var rc = node.roomInstance.GetComponent<RoomController>();
+            if (rc != null)
+            {
+                rc.roomType = node.roomType;
+                if (template != null) rc.template = template;
+                rc.SetDoorsVisualState(true);
             }
         }
+
         Debug.Log($"Total instantiated rooms: {roomGrid.Values.Count}");
-    }
     }
 
     private GameObject GetRoomPrefab(RoomNode node)
@@ -282,13 +278,11 @@ public class DungeonGenerator : MonoBehaviour
                 return matches.Length > 0
                     ? matches[rng.Next(matches.Length)].prefab
                     : (roomTemplates.Length > 0 ? roomTemplates[0].prefab : null);
-
-
         }
-
     }
 
-    private Vector3 GridToWorld(Vector2Int grid) =>
+    // renamed helper (was GridToWorld) -> public so other scripts can call it without ambiguity
+    public Vector3 GetWorldPosition(Vector2Int grid) =>
         new Vector3(grid.x * roomSpacing, grid.y * roomSpacing, 0);
 
     private void OnDrawGizmos()
@@ -296,24 +290,48 @@ public class DungeonGenerator : MonoBehaviour
         if (roomGrid == null) return;
         foreach (var kvp in roomGrid)
         {
-            Vector3 pos = GridToWorld(kvp.Key);
+            Vector3 pos = GetWorldPosition(kvp.Key);
             var node = kvp.Value;
 
             Gizmos.color = node.roomType switch
             {
-                RoomType.Start    => Color.green,
-                RoomType.Boss     => Color.red,
-                RoomType.Shop     => Color.yellow,
+                RoomType.Start => Color.green,
+                RoomType.Boss => Color.red,
+                RoomType.Shop => Color.yellow,
                 RoomType.Treasure => Color.magenta,
-                RoomType.Secret   => Color.cyan,
-                RoomType.Elite    => Color.white,
+                RoomType.Secret => Color.cyan,
+                RoomType.Elite => Color.white,
                 _ => node.isCriticalPath ? Color.blue : Color.gray
             };
             Gizmos.DrawCube(pos, Vector3.one * 3f);
 
             Gizmos.color = Color.white;
             foreach (var child in node.children)
-                Gizmos.DrawLine(pos, GridToWorld(child.gridPosition));
+                Gizmos.DrawLine(pos, GetWorldPosition(child.gridPosition));
+
+            Gizmos.color = Color.black;   // arrow colour
+            float a = 2f;                 // arrow length
+            float h = 0.5f;               // half arrow-head size
+
+            if (node.northDoor)
+                DrawArrow(pos, Vector3.up * a, h);
+            if (node.southDoor)
+                DrawArrow(pos, Vector3.down * a, h);
+            if (node.eastDoor)
+                DrawArrow(pos, Vector3.right * a, h);
+            if (node.westDoor)
+                DrawArrow(pos, Vector3.left * a, h);
         }
+    }
+
+    private void DrawArrow(Vector3 start, Vector3 dir, float headSize)
+    {
+        Vector3 end = start + dir;
+        Gizmos.DrawLine(start, end);
+
+        Vector3 right = Quaternion.LookRotation(Vector3.forward) * Quaternion.AngleAxis(150, Vector3.forward) * dir.normalized * headSize;
+        Vector3 left = Quaternion.LookRotation(Vector3.forward) * Quaternion.AngleAxis(-150, Vector3.forward) * dir.normalized * headSize;
+        Gizmos.DrawLine(end, end + right);
+        Gizmos.DrawLine(end, end + left);
     }
 }
