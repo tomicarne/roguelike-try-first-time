@@ -5,24 +5,26 @@ using UnityEngine;
 public class BoomerangSword : MonoBehaviour
 {
     [Header("Boomerang Settings")]
-    public float throwSpeed = 10f;
-    public float maxDistance = 6f;
-    public bool canBounceUpgrade = false;   // Set true when player unlocks the bounce upgrade
-    public float bounceRadius = 5f;
-    public int damage = 1;  
+    public float throwSpeed = 10f;           // Velocidad de lanzamiento
+    public float maxDistance = 6f;           // Distancia máxima antes de regresar
+    public bool canBounceUpgrade = false;    // Si el jugador tiene la mejora de rebote
+    public float bounceRadius = 5f;          // Radio para buscar enemigos al rebotar
+    public int damage = 1;                   // Daño que inflige
 
-    private Transform player;
-    private bool returning = false;
-    private Vector3 origin;
-    private Rigidbody2D rb;
-    private PlayerSwordAttack owner; 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Transform player;                // Referencia al jugador
+    private bool returning = false;          // Si la espada está regresando al jugador
+    private Vector3 origin;                  // Posición inicial del lanzamiento
+    private Rigidbody2D rb;                  // Referencia al Rigidbody2D
+    private PlayerSwordAttack owner;         // Referencia al script del jugador
+
+    //inicializa el Rigidbody2D
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
+    // Lanza la espada en una dirección desde el jugador
     public void Throw(Transform playerTransform, PlayerSwordAttack playerScript, Vector2 direction)
     {
         player = playerTransform;
@@ -33,39 +35,44 @@ public class BoomerangSword : MonoBehaviour
         rb.linearVelocity = direction.normalized * throwSpeed;
         if (owner) owner.isThrowing = true;
     }
+
     void Update()
     {
+        // Si llegó a la distancia máxima, regresa al jugador
         if (!returning && Vector3.Distance(origin, transform.position) >= maxDistance)
         {
             ReturnToPlayer();
         }
+        // Si está regresando, mueve la espada hacia el jugador
         if (returning)
         {
             Vector2 dir = (player.position - transform.position).normalized;
             rb.linearVelocity = dir * throwSpeed;
 
-            // if close enough, re-attach to player
+            // Si está lo suficientemente cerca del jugador, se desactiva
             if (Vector2.Distance(transform.position, player.position) < 0.5f)
             {
                 rb.linearVelocity = Vector2.zero;
                 rb.bodyType = RigidbodyType2D.Kinematic;
-                gameObject.SetActive(false); // hide sword until next throw
+                gameObject.SetActive(false); // Oculta la espada hasta el próximo lanzamiento
 
                 if (owner) owner.isThrowing = false;
             }
         }
     }
+
+    // Detecta colisiones con enemigos
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!returning && other.CompareTag("Enemy"))
         {
-            // normal damage handled by PlayerSwordAttack OnTriggerEnter2D
+            // Aplica daño al enemigo
             Health hp = other.GetComponent<Health>();
             if (hp) hp.TakeDamage(damage);
             
             if (canBounceUpgrade)
             {
-                // look for another enemy nearby to bounce to
+                // Busca otro enemigo cercano para rebotar
                 Collider2D nextEnemy = Physics2D.OverlapCircle(other.transform.position,
                                                                bounceRadius,
                                                                LayerMask.GetMask("Enemy"));
@@ -77,10 +84,12 @@ public class BoomerangSword : MonoBehaviour
                 }
             }
 
-            // no bounce target → return to player
+            // Si no hay rebote, regresa al jugador
             ReturnToPlayer();
         }
     }
+
+    // Marca la espada para que regrese al jugador
     private void ReturnToPlayer()
     {
         returning = true;

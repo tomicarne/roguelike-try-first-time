@@ -2,18 +2,14 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    public float moveSpeed = 3f;
-    public bool isActive = false;
-
     private Transform target;
-
+    // activates the enemy AI
     public void Activate(Transform player)
     {
+        //target the player
         target = player;
-        Debug.Log("checking enemie base");
-        Debug.Log(isActive);
 
-        // ✅ activate other AI scripts on this enemy
+        //activate other AI scripts on this enemy
         EnemyMeleeAI meleeAI = GetComponent<EnemyMeleeAI>();
         if (meleeAI != null) meleeAI.Activate(player);
 
