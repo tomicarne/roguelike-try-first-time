@@ -1,20 +1,26 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+
+// Clase base abstracta para manejar la salud, daño, invencibilidad y UI de salud
 public abstract class Health : MonoBehaviour
 {
     [Header("Health Settings")]
-    public int maxHealth = 3;
-    protected int currentHealth;
-    [Header("Invincibility")]
-    public float invincibilityDuration = 1.5f; // seconds
-    protected bool isInvincible = false;
-    private float invincibilityTimer = 0f;
-    [Header("UI")]
-    public TMP_Text healthText; // Assign in Inspector
+    public int maxHealth = 3;                  // Salud máxima
+    protected int currentHealth;               // Salud actual
 
-    private SpriteRenderer spriteRenderer;
-    private Coroutine blinkCoroutine;
+    [Header("Invincibility")]
+    public float invincibilityDuration = 1.5f; // Duración de invencibilidad tras recibir daño
+    protected bool isInvincible = false;       // Si está invencible actualmente
+    private float invincibilityTimer = 0f;     // Temporizador de invencibilidad
+
+    [Header("UI")]
+    public TMP_Text healthText;                // Referencia al texto de salud (asignar en Inspector)
+
+    private SpriteRenderer spriteRenderer;     // Referencia al SpriteRenderer para efectos visuales
+    private Coroutine blinkCoroutine;          // Corrutina para el parpadeo durante invencibilidad
+
+    // Inicializa la salud y referencias al iniciar el objeto
     protected virtual void Start()
     {
         currentHealth = maxHealth;
@@ -22,6 +28,7 @@ public abstract class Health : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    //maneja el temporizador de invencibilidad y el parpadeo
     protected virtual void Update()
     {
         if (isInvincible)
@@ -33,13 +40,15 @@ public abstract class Health : MonoBehaviour
                 if (blinkCoroutine != null)
                 {
                     StopCoroutine(blinkCoroutine);
-                    blinkCoroutine = null; // Ensure sprite is visible
+                    blinkCoroutine = null; // Asegura que el sprite sea visible
                 }
-                SetSpriteAlpha(1f);
+                SetSpriteAlpha(1f); // Restaura la opacidad total
                 Debug.Log(gameObject.name + " is no longer invincible.");
             }
         }
     }
+
+    // Restaura la salud al máximo y actualiza la UI
     public void restore_health()
     {
         currentHealth = maxHealth;
@@ -47,6 +56,7 @@ public abstract class Health : MonoBehaviour
         Debug.Log(gameObject.name + " health restored. HP: " + currentHealth);
     }
 
+    // Aplica daño si no está invencible, inicia invencibilidad y parpadeo
     public virtual void TakeDamage(int amount)
     {
         if (isInvincible) return;
@@ -69,6 +79,7 @@ public abstract class Health : MonoBehaviour
         }
     }
 
+    // Corrutina que hace parpadear el sprite entre visible y 60% opacidad durante la invencibilidad
     private IEnumerator BlinkSprite()
     {
         float blinkInterval = 0.15f;
@@ -79,9 +90,10 @@ public abstract class Health : MonoBehaviour
             visible = !visible;
             yield return new WaitForSeconds(blinkInterval);
         }
-        SetSpriteAlpha(1f); // Ensure sprite is fully visible at end
+        SetSpriteAlpha(1f); // Asegura opacidad total al terminar
     }
 
+    // Cambia la opacidad del sprite
     private void SetSpriteAlpha(float alpha)
     {
         if (spriteRenderer != null)
@@ -91,12 +103,15 @@ public abstract class Health : MonoBehaviour
             spriteRenderer.color = C;
         }
     }
-    //shows the health in the text UI
+
+    // Actualiza el texto de salud en la UI
     protected void updateHealthText()
     {
         if (healthText != null)
             healthText.text = currentHealth + " / " + maxHealth;
     }
+
+    // Permite establecer invencibilidad temporal desde otros scripts (por ejemplo, durante un dash)
     public void SetTemporaryInvincibility(float duration)
     {
         isInvincible = true;
@@ -110,5 +125,6 @@ public abstract class Health : MonoBehaviour
         }
     }
 
-    protected abstract void Die(); // each subclass decides what happens on death
+    // Método abstracto que define qué ocurre al morir (debe implementarse en las subclases)
+    protected abstract void Die();
 }

@@ -1,54 +1,53 @@
-using NUnit.Framework.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerAiming : MonoBehaviour
 {
     [Header("Aiming Settings")]
-    public float joystickDeadzone = 0.2f;
+    public float joystickDeadzone = 0.2f; // Zona muerta para el stick derecho
 
     [Header("Camera Look-Ahead")]
-    public bool enableLookAhead = true;
-    public float maxLookAheadDistance = 3f;
-    public float lookAheadSmoothness = 2f;
+    public bool enableLookAhead = true; // Si la cámara debe mirar hacia donde apuntas
+    public float maxLookAheadDistance = 3f; // Distancia máxima de anticipación de cámara
+    public float lookAheadSmoothness = 2f;  // Suavidad del movimiento de cámara
 
     [Header("Input Multipliers")]
-    public float mouseLookMultiplier = 1.5f;
-    public float controllerLookMultiplier = 1f;
+    public float mouseLookMultiplier = 1.5f;      // Multiplicador para el mouse
+    public float controllerLookMultiplier = 1f;   // Multiplicador para el control
 
-    private PlayerInput playerInput;
-    private InputAction aimStick;
-    private InputAction aimMouse;
+    private PlayerInput playerInput;      // Referencia al componente PlayerInput
+    private InputAction aimStick;         // Acción para el stick derecho
+    private InputAction aimMouse;         // Acción para el mouse
 
-    private Camera mainCam;
-    private bool useMouse = true;
+    private Camera mainCam;               // Referencia a la cámara principal
+    private bool useMouse = true;         // Si se está usando mouse para apuntar
 
-    // References to the new structure
-    public Transform Visuals;
-    public Transform aimPivot;
-    public Animator animator;
-    private SpriteRenderer spriteRenderer;
+    // Referencias a objetos visuales y animaciones
+    public Transform Visuals;             // Referencia al objeto visual del jugador
+    public Transform aimPivot;            // Punto de pivote para rotar el arma o sprite
+    public Animator animator;             // Referencia al Animator
+    private SpriteRenderer spriteRenderer;// Referencia al SpriteRenderer
 
-    // For animation blending
-    private Vector2 lastAimDirection = Vector2.right;
-    private Vector3 cameraLookTarget;
+    // Para blending de animaciones
+    private Vector2 lastAimDirection = Vector2.right; // Última dirección de apuntado
+    private Vector3 cameraLookTarget;                 // Objetivo de la cámara
 
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         mainCam = Camera.main;
 
-        // Separate actions (defined in your .inputactions file)
+        // Obtiene las acciones de input definidas en el InputActions
         aimStick = playerInput.actions["AimStick"];   // <Gamepad>/rightStick
         aimMouse = playerInput.actions["AimMouse"];   // <Mouse>/position
 
         Transform visuals = transform.Find("Visuals");
-        // Listen to any action to detect last device
+        // Aquí podrías inicializar spriteRenderer si lo necesitas
     }
 
     void Update()
     {
-        // Check stick input first
+        // Detecta si se está usando mouse o stick
         HandleInputDeviceDetection();
         if (useMouse)
             AimWithMouse();
@@ -59,6 +58,7 @@ public class PlayerAiming : MonoBehaviour
         UpdateCameraLookAhead();
     }
 
+    // Detecta el último dispositivo de entrada usado para apuntar
     void HandleInputDeviceDetection()
     {
         Vector2 stick = Gamepad.current?.rightStick.ReadValue() ?? Vector2.zero;
@@ -69,6 +69,7 @@ public class PlayerAiming : MonoBehaviour
             useMouse = true;
     }
 
+    // Apunta usando el mouse
     public void AimWithMouse()
     {
         Vector2 mouseScreenPos = aimMouse.ReadValue<Vector2>();
@@ -87,6 +88,8 @@ public class PlayerAiming : MonoBehaviour
             cameraLookTarget = transform.position + (Vector3)lookDirection * lookDistance;
         }
     }
+
+    // Apunta usando el stick derecho del control
     public void AimWithJoystick()
     {
         Vector2 aimInput = aimStick.ReadValue<Vector2>();
@@ -104,12 +107,12 @@ public class PlayerAiming : MonoBehaviour
         }
         else if (enableLookAhead)
         {
-            // Return camera to player when not aiming
+            // Si no se apunta, la cámara regresa al jugador
             cameraLookTarget = transform.position;
         }
-
-
     }
+
+    // Actualiza los parámetros del Animator según la dirección de apuntado
     void UpdateAnimations()
     {
         Vector2 animDirection = lastAimDirection;
@@ -117,30 +120,33 @@ public class PlayerAiming : MonoBehaviour
         animator.SetFloat("Horizontal", animDirection.x);
         animator.SetFloat("Vertical", animDirection.y);
     }
-        public void SetLookAheadEnabled(bool enabled)
+
+    // Permite activar o desactivar el look-ahead de la cámara
+    public void SetLookAheadEnabled(bool enabled)
     {
         enableLookAhead = enabled;
         if (!enabled && mainCam != null)
         {
-            // Snap camera back to player
+            // Regresa la cámara al jugador inmediatamente
             Vector3 playerPos = transform.position;
             mainCam.transform.position = new Vector3(playerPos.x, playerPos.y, mainCam.transform.position.z);
         }
     }
+
+    // Mueve suavemente la cámara hacia el objetivo de look-ahead
     void UpdateCameraLookAhead()
     {
         if (!enableLookAhead || mainCam == null) return;
         
-        // Smoothly move camera towards look target
         Vector3 cameraPos = mainCam.transform.position;
         Vector3 targetPos = new Vector3(cameraLookTarget.x, cameraLookTarget.y, cameraPos.z);
         
         mainCam.transform.position = Vector3.Lerp(cameraPos, targetPos, lookAheadSmoothness * Time.deltaTime);
     }
     
+    // Permite cambiar la distancia máxima de look-ahead desde otros scripts
     public void SetLookAheadDistance(float distance)
     {
         maxLookAheadDistance = distance;
     }
-    
 }

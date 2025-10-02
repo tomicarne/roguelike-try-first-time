@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
-    public RoomType roomType = RoomType.Normal;
+    public RoomType roomType = RoomType.Normal; // Tipo de sala (normal, jefe, etc.)
     [Header("Room Template")]
-    public RoomTemplate template;
+    public RoomTemplate template; // Plantilla que define qué enemigos pueden aparecer
 
     [Header("Door References")]
     public GameObject northDoor;
@@ -14,83 +14,89 @@ public class RoomController : MonoBehaviour
     public GameObject westDoor;
 
     [Header("Door Materials")]
-    public Material openDoorMaterial;
-    public Material closedDoorMaterial;
+    public Material openDoorMaterial;   // Material para puertas abiertas
+    public Material closedDoorMaterial; // Material para puertas cerradas
 
-    public List<GameObject> enemiesInRoom = new();
-    private bool playerInside = false;
+    public List<GameObject> enemiesInRoom = new(); // Lista de enemigos presentes en la sala
+    private bool playerInside = false;             // Si el jugador está dentro de la sala
+
     [Header("Spawning Setup")]
-    private bool enemiesSpawned = false;
-    public List<Transform> spawnPoints;      // Empty child objects inside the room
-    public float spawnDelay = 0.3f;          // Optional delay between spawns
-    private readonly List<GameObject> spawnedEnemies = new();
+    private bool enemiesSpawned = false;           // Si los enemigos ya fueron generados
+    public List<Transform> spawnPoints;            // Puntos de aparición de enemigos
+    public float spawnDelay = 0.3f;                // Retardo opcional entre spawns
+    private readonly List<GameObject> spawnedEnemies = new(); // Lista de enemigos generados
 
+    // Se llama al iniciar la sala
     void Start()
     {
         RoomController room = GetComponentInParent<RoomController>();
         if (room != null)
             room.RegisterEnemy(this.gameObject);
-        // Rooms that require combat start with doors open (until player enters)
+        // Las salas de combate empiezan con puertas abiertas hasta que entra el jugador
         SetDoorsVisualState(true);
     }
 
+    // Se llama cuando el jugador entra en el trigger de la sala
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
 
         playerInside = true;
-        //ActivateAllEnemies(other.transform);
+        // Genera enemigos si aún no han sido generados
         if (!enemiesSpawned)
         {
             enemiesSpawned = true;
             StartCoroutine(SpawnEnemiesFromTemplate(other.transform));
         }
-        // If this is a combat room and there are enemies, close doors
+        // Si es una sala de combate y hay enemigos, cierra las puertas
         CloseAllDoors();
+        // Si ya no quedan enemigos, abre las puertas
         if (playerInside && enemiesInRoom.Count <= 1)
         {
             OpenAllDoors();
         }
     }
 
+    // Se llama mientras el jugador permanece en la sala
     void OnTriggerStay2D(Collider2D collision)
     {
-        enemiesInRoom.RemoveAll(e => e == null);
+        enemiesInRoom.RemoveAll(e => e == null); // Limpia enemigos destruidos
         if (playerInside && enemiesInRoom.Count <= 1)
         {
             OpenAllDoors();
         }
     }
 
+    // Se llama cuando el jugador sale de la sala
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
             playerInside = false;
     }
 
-    // ---- Enemy registration ----
+    // Agrega un enemigo a la lista de la sala
     public void RegisterEnemy(GameObject enemy)
     {
         if (!enemiesInRoom.Contains(enemy))
             enemiesInRoom.Add(enemy);
     }
 
+    // Remueve un enemigo de la lista de la sala
     public void UnregisterEnemy(GameObject enemy)
     {
-
         enemiesInRoom.Remove(enemy);
-        enemiesInRoom.RemoveAll(e => e == null);
+        enemiesInRoom.RemoveAll(e => e == null); // Limpia referencias nulas
         if (playerInside && enemiesInRoom.Count <= 1)
         {
             OpenAllDoors();
         }
-        
     }
 
-    // ---- Door control ----
-    private void CloseAllDoors() => SetDoorsVisualState(false);
-    private void OpenAllDoors() => SetDoorsVisualState(true);
+    // ---- Control de puertas ----
+    private void CloseAllDoors() => SetDoorsVisualState(false); // Cierra todas las puertas
+    private void OpenAllDoors() => SetDoorsVisualState(true);   // Abre todas las puertas
 
+    // Cambia el estado visual y físico de todas las puertas
     public void SetDoorsVisualState(bool open)
     {
         SetDoorState(northDoor, open);
@@ -99,11 +105,12 @@ public class RoomController : MonoBehaviour
         SetDoorState(westDoor, open);
     }
 
+    // Cambia el estado de una puerta individual
     private void SetDoorState(GameObject door, bool isOpen)
     {
         if (door == null) return;
 
-        // visual
+        // Cambia el material y color de la puerta
         var sr = door.GetComponent<SpriteRenderer>();
         if (sr != null)
         {
@@ -112,58 +119,46 @@ public class RoomController : MonoBehaviour
             sr.color = isOpen ? Color.green : Color.red;
         }
 
-        // physics (open doors are triggers so the player can pass)
+        // Cambia el collider para permitir o bloquear el paso
         var col = door.GetComponent<Collider2D>();
         if (col != null)
             col.isTrigger = isOpen;
     }
 
-    // ---- Enemy activation ----
-    /*private void ActivateAllEnemies(Transform player)
-    {
-        Debug.Log("activating enemies");
-        foreach (var enemy in enemiesInRoom)
-        {
-            EnemyBase baseComp = enemy.GetComponent<EnemyBase>();
-            Debug.Log($"{enemy.name}  EnemyBase? {baseComp != null}");
-            if (baseComp != null)
-                baseComp.Activate(player);
-        }
-    }*/
+    // ---- Generación y activación de enemigos ----
+    // Corrutina que genera enemigos según la plantilla de la sala
     private System.Collections.IEnumerator SpawnEnemiesFromTemplate(Transform player)
-{
-    
-    if (template == null || template.enemyPrefabs == null || template.enemyPrefabs.Length == 0)
+    {
+        if (template == null || template.enemyPrefabs == null || template.enemyPrefabs.Length == 0)
         {
             Debug.LogWarning($"{name}: No template or enemy prefabs set.");
             yield break;
         }
 
-    // Decide how many enemies to spawn based on the template
-    int enemyCount = Random.Range(template.minEnemies, template.maxEnemies + 1);
+        // Decide cuántos enemigos generar según la plantilla
+        int enemyCount = Random.Range(template.minEnemies, template.maxEnemies + 1);
 
-    for (int i = 0; i < enemyCount; i++)
-    {
-        // pick a random spawn point
-        Transform point = spawnPoints[Random.Range(0, spawnPoints.Count)];
+        for (int i = 0; i < enemyCount; i++)
+        {
+            // Elige un punto de aparición aleatorio
+            Transform point = spawnPoints[Random.Range(0, spawnPoints.Count)];
 
-        // choose a random enemy prefab from the template
-        GameObject prefab = template.enemyPrefabs[Random.Range(0, template.enemyPrefabs.Length)];
+            // Elige un prefab de enemigo aleatorio de la plantilla
+            GameObject prefab = template.enemyPrefabs[Random.Range(0, template.enemyPrefabs.Length)];
 
-        // instantiate and register
-        GameObject enemy = Instantiate(prefab, point.position, Quaternion.identity);
-        var eh = enemy.GetComponent<EnemyHealth>();
-        if (eh != null) eh.currentRoom = this;
-        RegisterEnemy(enemy);
-        spawnedEnemies.Add(enemy);
+            // Instancia y registra el enemigo
+            GameObject enemy = Instantiate(prefab, point.position, Quaternion.identity);
+            var eh = enemy.GetComponent<EnemyHealth>();
+            if (eh != null) eh.currentRoom = this;
+            RegisterEnemy(enemy);
+            spawnedEnemies.Add(enemy);
 
-        // activate immediately if EnemyBase supports it
-        EnemyBase baseComp = enemy.GetComponent<EnemyBase>();
-        if (baseComp != null)
-            baseComp.Activate(player);
+            // Activa el enemigo si tiene el componente EnemyBase
+            EnemyBase baseComp = enemy.GetComponent<EnemyBase>();
+            if (baseComp != null)
+                baseComp.Activate(player);
 
-        yield return new WaitForSeconds(spawnDelay);
+            yield return new WaitForSeconds(spawnDelay);
+        }
     }
-}
-
 }

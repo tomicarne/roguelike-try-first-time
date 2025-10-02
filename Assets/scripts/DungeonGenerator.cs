@@ -5,13 +5,18 @@ using System.Linq;
 public class DungeonGenerator : MonoBehaviour
 {
     [Header("Generation Settings")]
+    // minimo y maximo de salas
     public int minRooms = 8;
     public int maxRooms = 15;
+    // distancia entre salas
     public float roomSpacing = 20f;
+    // maxima cantidad de salas en cada branch
     public int maxBranchingDepth = 3;
 
     [Header("Room Templates")]
+    // los prefabs de salas normales
     public RoomTemplate[] roomTemplates;
+    //salas especiales
     public GameObject startRoom;
     public GameObject bossRoom;
     public GameObject shopRoom;
@@ -19,6 +24,7 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject secretRoom;
 
     [Header("Room Weights")]
+    // probabilidad de salas especiales
     [Range(0, 100)] public int shopChance = 10;
     [Range(0, 100)] public int treasureChance = 15;
     [Range(0, 100)] public int secretRoomChance = 5;
@@ -26,9 +32,6 @@ public class DungeonGenerator : MonoBehaviour
     private readonly Dictionary<Vector2Int, RoomNode> roomGrid = new();
     private readonly List<RoomNode> endNodes = new();
     private System.Random rng;
-
-    // Expose a read-only view of the grid so DoorPlacer (or others) can read it
-    public IReadOnlyDictionary<Vector2Int, RoomNode> RoomGrid => roomGrid;
 
     [System.Serializable]
     public class RoomNode
@@ -40,77 +43,83 @@ public class DungeonGenerator : MonoBehaviour
         public RoomNode parent;
         public List<RoomNode> children = new();
         public bool isCriticalPath = false;
-
+        // puertas de las cuatro direcciones
         public bool northDoor, southDoor, eastDoor, westDoor;
     }
-
+    // para que cuando se empieze la partida se genera la dungeon
     private void Start() => Generate();
 
     private void Generate()
     {
         rng = new System.Random();
+        // limpiar por si hay nodes del anterior intento
         roomGrid.Clear();
         endNodes.Clear();
 
-        // --- Start Room ---
+        // Crear el nodo inicial (sala de inicio) en la posición (0,0)
         var startNode = new RoomNode
         {
             gridPosition = Vector2Int.zero,
             roomType = RoomType.Start,
             depth = 0
         };
+        // Registrar la sala de inicio en el grid
         roomGrid[Vector2Int.zero] = startNode;
+        // Instanciar el prefab de la sala de inicio en la escena
         startNode.roomInstance = Instantiate(startRoom, GetWorldPosition(Vector2Int.zero), Quaternion.identity);
-
-        // --- Branching ---
+        // Cola para expandir nodos (BFS)
         var toExpand = new Queue<RoomNode>();
         toExpand.Enqueue(startNode);
 
+        // Determinar la cantidad total de salas a crear
         int totalRooms = rng.Next(minRooms, maxRooms + 1);
         int roomsCreated = 1;
 
+        // Expandir la dungeon mientras haya nodos por expandir y no se alcance el límite de salas
         while (toExpand.Count > 0 && roomsCreated < totalRooms)
         {
             RoomNode current = toExpand.Dequeue();
+            // Limitar la profundidad de ramificación
             if (current.depth >= maxBranchingDepth) continue;
 
+            // Determinar cuántas ramas crear desde este nodo
             int branchCount = GetBranchCount(current.depth);
+            // Obtener direcciones disponibles y mezclarlas aleatoriamente
             var availableDirs = GetAvailableDirections(current.gridPosition)
-                                .OrderBy(_ => rng.Next()).ToList();
+                    .OrderBy(_ => rng.Next()).ToList();
 
+            // Crear nuevas salas en las direcciones disponibles
             for (int i = 0; i < Mathf.Min(branchCount, availableDirs.Count) && roomsCreated < totalRooms; i++)
             {
-                Vector2Int dir = availableDirs[i];
-                Vector2Int newPos = current.gridPosition + dir;
-                if (roomGrid.ContainsKey(newPos)) continue;
+            Vector2Int dir = availableDirs[i];
+            Vector2Int newPos = current.gridPosition + dir;
+            // Saltar si ya existe una sala en esa posición
+            if (roomGrid.ContainsKey(newPos)) continue;
 
-                RoomType newType = DetermineRoomType(current.depth, roomsCreated, totalRooms);
-                RoomNode newNode = CreateRoomNode(newPos, dir, current, newType);
+            // Determinar el tipo de sala a crear
+            RoomType newType = DetermineRoomType(current.depth, roomsCreated, totalRooms);
+            // Crear el nodo de la nueva sala
+            RoomNode newNode = CreateRoomNode(newPos, dir, current, newType);
 
-                roomGrid[newPos] = newNode;
-                current.children.Add(newNode);
-                toExpand.Enqueue(newNode);
-                roomsCreated++;
+            // Registrar la nueva sala en el grid y como hija del nodo actual
+            roomGrid[newPos] = newNode;
+            current.children.Add(newNode);
+            // Agregar la nueva sala a la cola para expandirla después
+            toExpand.Enqueue(newNode);
+            roomsCreated++;
 
-                // Potential end node
-                if (branchCount == 1 || i == branchCount - 1)
-                    endNodes.Add(newNode);
+            // Si es un nodo final potencial (poca ramificación), agregarlo a endNodes
+            if (branchCount == 1 || i == branchCount - 1)
+                endNodes.Add(newNode);
             }
         }
 
         IdentifyCriticalPath();
         PlaceSpecialRooms();
-
-        // Recompute final doors from the grid adjacency (must happen AFTER layout)
         RecomputeDoors();
-
         InstantiateAllRooms();
-
-        // Optionally: if you have a DoorPlacer on the same GameObject, call it now
-        var placer = GetComponent<DoorPlacer>();
-        if (placer != null) placer.PlaceDoors();
     }
-
+    // identifica cuantas branch hay
     private int GetBranchCount(int depth)
     {
         float[] probs = { 0.6f, 0.3f, 0.1f };
@@ -123,7 +132,7 @@ public class DungeonGenerator : MonoBehaviour
         }
         return 1;
     }
-
+    // identifica las dirrecciones disponibles para colocar una sala
     private List<Vector2Int> GetAvailableDirections(Vector2Int pos)
     {
         var dirs = new List<Vector2Int>();
@@ -131,7 +140,7 @@ public class DungeonGenerator : MonoBehaviour
             if (!roomGrid.ContainsKey(pos + d)) dirs.Add(d);
         return dirs;
     }
-
+    // determina el tipo de sala que sera seleccionada
     private RoomType DetermineRoomType(int depth, int made, int total)
     {
         if (depth < 2) return RoomType.Normal;
@@ -146,7 +155,7 @@ public class DungeonGenerator : MonoBehaviour
 
         return RoomType.Normal;
     }
-
+    // crea un nodo para una sala
     private RoomNode CreateRoomNode(Vector2Int pos, Vector2Int dir, RoomNode parent, RoomType type)
     {
         var node = new RoomNode
@@ -164,7 +173,7 @@ public class DungeonGenerator : MonoBehaviour
 
         return node;
     }
-
+    // identifica el camino critico para la conexion entre la sala de incicio y de boss
     private void IdentifyCriticalPath()
     {
         RoomNode farthest = null;
@@ -181,7 +190,7 @@ public class DungeonGenerator : MonoBehaviour
 
         if (bossNode != null) bossNode.roomType = RoomType.Boss;
     }
-
+    // calcula las puertas necesarias
     private void RecomputeDoors()
     {
         foreach (var kvp in roomGrid)
@@ -194,7 +203,7 @@ public class DungeonGenerator : MonoBehaviour
             n.westDoor = roomGrid.ContainsKey(pos + Vector2Int.left);
         }
     }
-
+    // coloca las sala especiales
     private void PlaceSpecialRooms()
     {
         var shopCandidates = roomGrid.Values
@@ -207,20 +216,21 @@ public class DungeonGenerator : MonoBehaviour
         foreach (var end in deadEnds)
             if (rng.Next(0, 100) < 40) end.roomType = RoomType.Treasure;
     }
-
+    // crea las salas 
     private void InstantiateAllRooms()
     {
         Debug.Log("=== INSTANTIATING ROOMS ===");
 
         foreach (var node in roomGrid.Values)
         {
+            // verifica si la sala ya existe en el nodo deseado
             if (node.roomInstance != null)
             {
                 Debug.Log($"Room at {node.gridPosition} already instantiated (start room).");
                 continue;
             }
 
-            // choose template & rotation first
+            // escoge el prefab y la rotacion necesaria
             RoomTemplate template = roomTemplates.FirstOrDefault(t =>
                 t.doorNorth == node.northDoor &&
                 t.doorSouth == node.southDoor &&
@@ -229,30 +239,33 @@ public class DungeonGenerator : MonoBehaviour
 
             GameObject prefabToUse;
             Quaternion rotation = Quaternion.identity;
-
+            // sacara la rotacion necesaria para el prefab
             if (template != null)
             {
                 prefabToUse = template.prefab;
                 rotation = Quaternion.Euler(template.defaultRotation);
             }
-            else
+            else //escogera el primer prefab en la lista
             {
                 prefabToUse = GetRoomPrefab(node);
             }
 
-            if (prefabToUse == null) continue;
+            if (prefabToUse == null) continue; // verifica que si se haya seleccionado un prefab
 
+            // coloca el prefab en ka scena
             node.roomInstance = Instantiate(prefabToUse,
                                             GetWorldPosition(node.gridPosition),
                                             rotation);
 
             Debug.Log($"✓ Instantiated {node.roomType} at {node.gridPosition} using '{prefabToUse.name}'");
 
+            // guarda el room controller del prefab
             var rc = node.roomInstance.GetComponent<RoomController>();
             if (rc != null)
             {
                 rc.roomType = node.roomType;
                 if (template != null) rc.template = template;
+                // abre todas las puertas
                 rc.SetDoorsVisualState(true);
             }
         }
@@ -260,6 +273,7 @@ public class DungeonGenerator : MonoBehaviour
         Debug.Log($"Total instantiated rooms: {roomGrid.Values.Count}");
     }
 
+    // para poder seleccionar los prefabs en las listas
     private GameObject GetRoomPrefab(RoomNode node)
     {
         switch (node.roomType)
@@ -280,11 +294,11 @@ public class DungeonGenerator : MonoBehaviour
                     : (roomTemplates.Length > 0 ? roomTemplates[0].prefab : null);
         }
     }
-
-    // renamed helper (was GridToWorld) -> public so other scripts can call it without ambiguity
+    // selecciona la posicion de un nodo
     public Vector3 GetWorldPosition(Vector2Int grid) =>
         new Vector3(grid.x * roomSpacing, grid.y * roomSpacing, 0);
 
+    // guia para saber como esta funcionando el algoritmo
     private void OnDrawGizmos()
     {
         if (roomGrid == null) return;
@@ -292,7 +306,7 @@ public class DungeonGenerator : MonoBehaviour
         {
             Vector3 pos = GetWorldPosition(kvp.Key);
             var node = kvp.Value;
-
+            //selecciona el color de la conexion dependiendo del tipo de sala
             Gizmos.color = node.roomType switch
             {
                 RoomType.Start => Color.green,
@@ -308,11 +322,11 @@ public class DungeonGenerator : MonoBehaviour
             Gizmos.color = Color.white;
             foreach (var child in node.children)
                 Gizmos.DrawLine(pos, GetWorldPosition(child.gridPosition));
-
-            Gizmos.color = Color.black;   // arrow colour
-            float a = 2f;                 // arrow length
-            float h = 0.5f;               // half arrow-head size
-
+            // estableze el color de la flecha
+            Gizmos.color = Color.black;   // color de la flecha
+            float a = 4f;                 // distancia de la flecha
+            float h = 1f;               // tamaño de la cabeza 
+            // dibuja una flecha dependiendo en donde se nececite la conexion para las salas
             if (node.northDoor)
                 DrawArrow(pos, Vector3.up * a, h);
             if (node.southDoor)
