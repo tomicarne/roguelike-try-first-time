@@ -1,6 +1,12 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+<<<<<<< Updated upstream
+=======
+using System;
+
+// Clase base abstracta para manejar la salud, daño, invencibilidad y UI de salud
+>>>>>>> Stashed changes
 public abstract class Health : MonoBehaviour
 {
     [Header("Health Settings")]
@@ -101,7 +107,7 @@ public abstract class Health : MonoBehaviour
     {
         isInvincible = true;
         invincibilityTimer = Mathf.Max(invincibilityTimer, duration);
-        
+
         if (spriteRenderer != null)
         {
             if (blinkCoroutine != null)
@@ -110,5 +116,16 @@ public abstract class Health : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     protected abstract void Die(); // each subclass decides what happens on death
 }
+=======
+    // Método abstracto que define qué ocurre al morir (debe implementarse en las subclases)
+    protected abstract void Die();
+
+    internal void TakeDamage(float v)
+    {
+        throw new NotImplementedException();
+    }
+}
+>>>>>>> Stashed changes

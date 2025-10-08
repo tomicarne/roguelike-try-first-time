@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vorr-3_4_Espalda_left_0: -2737782145751116332
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7832e8fe872735e4ea3b118e53845862
+guid: 19c7f8f662e4d0b4a88f4a97a653bb78
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2174259702516461596
-    second: Kopp- Espalda_0
+      213: 6552887336232023551
+    second: guante_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Kopp- Espalda_0
+      name: guante_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1200
-        height: 1600
+        x: 165
+        y: 121
+        width: 270
+        height: 328
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4ef4f0ef15a73d1e0800000000000000
-      internalID: -2174259702516461596
+      spriteID: ff5f349405880fa50800000000000000
+      internalID: 6552887336232023551
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Kopp- Espalda_0: -2174259702516461596
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

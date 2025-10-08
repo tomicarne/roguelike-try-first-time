@@ -343,6 +343,9 @@ MonoBehaviour:
   canReflectBullets: 1
   canThrowSword: 1
   isThrowing: 0
+  tiempoPowerUp: 3
+  "da\xF1oExtra": 0
+  "da\xF1oBaseGolpe": 1
 --- !u!114 &260070732
 MonoBehaviour:
   m_ObjectHideFlags: 0

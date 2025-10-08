@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -17,18 +18,29 @@ public class PlayerSwordAttack : MonoBehaviour
     public bool canReflectBullets = false;
     public bool canThrowSword = false;
 
+<<<<<<< Updated upstream
     private bool attacking = false;
     private PlayerInput playerInput;
     private InputAction attackAction;
     private SpriteRenderer spriteRenderer;
     [HideInInspector] public bool isThrowing = false;
+=======
+    private bool attacking = false;          // Si el jugador está atacando actualmente
+    private PlayerInput playerInput;         // Referencia al componente PlayerInput
+    private InputAction attackAction;        // Acción de input para atacar
+    private SpriteRenderer spriteRenderer;   // Referencia al SpriteRenderer (no usado aquí)
+    [HideInInspector] public bool isThrowing = false; // Si la espada está lanzada
+    public float tiempoPowerUp;
+    public float dañoExtra;
+    public float dañoBaseGolpe = 1f; // Daño base del golpe de espada  
+>>>>>>> Stashed changes
 
     void Start()
     {
         swordHitbox.SetActive(false);
         swordCollider = swordHitbox.GetComponent<Collider2D>();
         swordCollider.enabled = false;
-        
+
         playerInput = GetComponent<PlayerInput>();
 
         // Access the "Attack" action (must exist in Input Actions asset)
@@ -92,7 +104,7 @@ public class PlayerSwordAttack : MonoBehaviour
     private void PositionSwordHitbox()
     {
         if (aimPivot == null) return;
-        
+
         Vector2 attackDirection = aimPivot.right;
         swordHitbox.transform.position = aimPivot.position + (Vector3)(attackDirection * attackDistance);
 
@@ -115,7 +127,7 @@ public class PlayerSwordAttack : MonoBehaviour
         Health target = other.GetComponent<Health>();
         if (target != null && other.CompareTag("Enemy"))
         {
-            target.TakeDamage(1);
+            target.TakeDamage((int)CalcularDañoTotal());
         }
 
         // bullet reflection
@@ -143,4 +155,29 @@ public class PlayerSwordAttack : MonoBehaviour
 
         }
     }
+
+    private float CalcularDañoTotal()
+    {
+        return dañoBaseGolpe + dañoExtra;
+    }
+
+    public void SubirDañoPowerUp(float dañoExtraParametro)
+    {
+        dañoExtra = dañoExtraParametro;
+        Debug.Log("Daño extra aumentado a: " + dañoExtra);
+    }
+    // public void SubirDañoPowerUp(float dañoExtraParametro)
+    // {
+    //     StartCoroutine(SubirDañoPowerUpCoroutine(dañoExtraParametro));
+    // }
+    // private IEnumerator SubirDañoPowerUpCoroutine(float dañoExtraParametro)
+    // {
+    //     dañoExtra = dañoExtraParametro;
+    //     Debug.Log("Daño extra inicio y aumentado a: " + dañoExtra);
+    //     yield return new WaitForSeconds(tiempoPowerUp);
+    //     dañoExtra = 0;
+    //     Debug.Log("Daño extra terminado y vuelto a: " + dañoExtra);
+    // }
+
+
 }
