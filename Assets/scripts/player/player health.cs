@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Maneja la salud y muerte del jugador, hereda de Health
 public class PlayerHealth : Health
 {
+<<<<<<< Updated upstream
     public GameObject deathScreen; // Asigna en el Inspector si quieres mostrar una pantalla de muerte
+=======
+    public GameObject deathScreen; // Pantalla de muerte (UI)
+>>>>>>> Stashed changes
     public bool respawnOnDeath = true; // Si el jugador debe reaparecer al morir
 
     // Se llama cuando la salud llega a 0
@@ -27,5 +32,6 @@ public class PlayerHealth : Health
             // Si no hay respawn, desactiva el GameObject del jugador
             gameObject.SetActive(false);
         }
+        //SceneManager.LoadScene(0);
     }
 }
