@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
-<<<<<<< Updated upstream
-    public GameObject deathScreen; // assign in Inspector if you want UI
-    public bool respawnOnDeath = true;
-
-=======
     public GameObject deathScreen; // Pantalla de muerte (UI)
     public bool respawnOnDeath = true; // Si el jugador debe reaparecer al morir
 
@@ -19,7 +14,6 @@ public class PlayerHealth : Health
     }
 
     // Se llama cuando la salud llega a 0
->>>>>>> Stashed changes
     protected override void Die()
     {
         Debug.Log("Player died!");

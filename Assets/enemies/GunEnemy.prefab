@@ -185,6 +185,10 @@ MonoBehaviour:
   invincibilityDuration: 0.5
   healthText: {fileID: 9102081382186536567}
   currentRoom: {fileID: 0}
+  itemDrop:
+  - {fileID: 2602047173236197632, guid: 3b4f520f7a092174084e9c003bf7828f, type: 3}
+  dropAllItems: 0
+  dropChance: 1
 --- !u!114 &6724321473410735789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,6 +648,9 @@ MonoBehaviour:
   invincibilityDuration: 0.5
   healthText: {fileID: 9102081382186536567}
   currentRoom: {fileID: 0}
+  itemDrop: []
+  dropAllItems: 0
+  dropChance: 0.5
 --- !u!114 &4219220572347633348
 MonoBehaviour:
   m_ObjectHideFlags: 0

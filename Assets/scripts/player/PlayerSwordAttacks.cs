@@ -18,13 +18,6 @@ public class PlayerSwordAttack : MonoBehaviour
     public bool canReflectBullets = false;
     public bool canThrowSword = false;
 
-<<<<<<< Updated upstream
-    private bool attacking = false;
-    private PlayerInput playerInput;
-    private InputAction attackAction;
-    private SpriteRenderer spriteRenderer;
-    [HideInInspector] public bool isThrowing = false;
-=======
     private bool attacking = false;          // Si el jugador está atacando actualmente
     private PlayerInput playerInput;         // Referencia al componente PlayerInput
     private InputAction attackAction;        // Acción de input para atacar
@@ -33,7 +26,6 @@ public class PlayerSwordAttack : MonoBehaviour
     public float tiempoPowerUp;
     public float dañoExtra;
     public float dañoBaseGolpe = 1f; // Daño base del golpe de espada  
->>>>>>> Stashed changes
 
     void Start()
     {
@@ -46,15 +38,15 @@ public class PlayerSwordAttack : MonoBehaviour
         // Access the "Attack" action (must exist in Input Actions asset)
         if (playerInput != null)
         {
-        attackAction = playerInput.actions["Attack"];
-        if (attackAction == null)
-        {
-            Debug.LogError("Attack action not found in Input Actions asset!");
+            attackAction = playerInput.actions["Attack"];
+            if (attackAction == null)
+            {
+                Debug.LogError("Attack action not found in Input Actions asset!");
+            }
         }
-     }
         else
         {
-        Debug.LogError("PlayerInput component not found on Player!");
+            Debug.LogError("PlayerInput component not found on Player!");
         }
     }
 
@@ -77,7 +69,7 @@ public class PlayerSwordAttack : MonoBehaviour
         {
             StartCoroutine(SwingSword());
         }
-        if (canThrowSword &&Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (canThrowSword && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             Debug.Log("trhown");
             Vector2 throwDir = aimPivot.right.normalized;
