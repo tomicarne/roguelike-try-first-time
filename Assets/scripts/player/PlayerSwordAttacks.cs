@@ -24,6 +24,12 @@ public class PlayerSwordAttack : MonoBehaviour
     private InputAction attackAction;        // Acción de input para atacar
     private SpriteRenderer spriteRenderer;   // Referencia al SpriteRenderer (no usado aquí)
     [HideInInspector] public bool isThrowing = false; // Si la espada está lanzada
+<<<<<<< Updated upstream
+=======
+    public float tiempoPowerUp;
+    public float dañoExtra;
+    public float dañoBaseGolpe = 1f; // Daño base del golpe de espada  
+>>>>>>> Stashed changes
 
     // Inicializa referencias y desactiva el hitbox al iniciar
     void Start()

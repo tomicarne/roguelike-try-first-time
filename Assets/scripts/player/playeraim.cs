@@ -27,10 +27,17 @@ public class PlayerAiming : MonoBehaviour
     public Transform aimPivot;            // Punto de pivote para rotar el arma o sprite
     public Animator animator;             // Referencia al Animator
     private SpriteRenderer spriteRenderer;// Referencia al SpriteRenderer
+    private Rigidbody2D rb;
 
     // Para blending de animaciones
     private Vector2 lastAimDirection = Vector2.right; // Última dirección de apuntado
     private Vector3 cameraLookTarget;                 // Objetivo de la cámara
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Awake()
     {
@@ -116,9 +123,11 @@ public class PlayerAiming : MonoBehaviour
     void UpdateAnimations()
     {
         Vector2 animDirection = lastAimDirection;
+        float speed = rb.linearVelocity.magnitude;
 
         animator.SetFloat("Horizontal", animDirection.x);
         animator.SetFloat("Vertical", animDirection.y);
+        animator.SetFloat("Speed", speed);
     }
 
     // Permite activar o desactivar el look-ahead de la cámara
