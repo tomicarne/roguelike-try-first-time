@@ -35,8 +35,9 @@ public class PlayerAiming : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = Visuals.GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        
     }
 
     void Awake()
@@ -54,6 +55,7 @@ public class PlayerAiming : MonoBehaviour
 
     void Update()
     {
+        UpdateAnimations();
         // Detecta si se está usando mouse o stick
         HandleInputDeviceDetection();
         if (useMouse)
@@ -61,7 +63,7 @@ public class PlayerAiming : MonoBehaviour
         else
             AimWithJoystick();
 
-        UpdateAnimations();
+        
         UpdateCameraLookAhead();
     }
 

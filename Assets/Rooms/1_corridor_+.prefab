@@ -11260,7 +11260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: 1
-  template: {fileID: 0}
+  template: {fileID: 11400000, guid: 7153427ab6dfc754fbc4dd729443a2ad, type: 2}
   northDoor: {fileID: 4966967424195435221}
   southDoor: {fileID: 580820128110289097}
   eastDoor: {fileID: 4112825733006158101}

@@ -1,10 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-<<<<<<< Updated upstream
-=======
 using System;
->>>>>>> Stashed changes
 
 // Clase base abstracta para manejar la salud, daño, invencibilidad y UI de salud
 public abstract class Health : MonoBehaviour
@@ -131,13 +128,9 @@ public abstract class Health : MonoBehaviour
 
     // Método abstracto que define qué ocurre al morir (debe implementarse en las subclases)
     protected abstract void Die();
-<<<<<<< Updated upstream
-}
-=======
 
     internal void TakeDamage(float v)
     {
         throw new NotImplementedException();
     }
 }
->>>>>>> Stashed changes

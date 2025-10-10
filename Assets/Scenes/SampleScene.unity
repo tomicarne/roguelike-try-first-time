@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 260070731}
   - component: {fileID: 260070732}
   - component: {fileID: 260070733}
-  - component: {fileID: 260070735}
   - component: {fileID: 260070734}
   m_Layer: 0
   m_Name: player
@@ -183,7 +182,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.27, y: 0.55}
+    oldSize: {x: 1.8, y: 3.6666667}
     newSize: {x: 0.27, y: 0.55}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -248,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73aa2b3c96d071a42ad15e097de3881b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 8
 --- !u!114 &260070729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +382,6 @@ MonoBehaviour:
   steeringFactor: 0.2
   visuals: {fileID: 1292203401}
   aimPivot: {fileID: 509629000}
-  animator: {fileID: 1292203402}
 --- !u!212 &260070734
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -391,7 +389,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260070721}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -439,28 +437,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &260070735
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260070721}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e3ef3e34146db1942be9925c35728410, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &509628999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1108,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.903936, y: 5.903936, z: 5.903936}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1021094820}
@@ -1263,12 +1239,12 @@ MonoBehaviour:
   roomSpacing: 20
   maxBranchingDepth: 3
   roomTemplates:
+  - {fileID: 11400000, guid: 7153427ab6dfc754fbc4dd729443a2ad, type: 2}
   - {fileID: 11400000, guid: c41dec4c577b19f4bb4a1e1840e9f78a, type: 2}
   - {fileID: 11400000, guid: c6c7f13c22c46b34d9035f00dec16d59, type: 2}
   - {fileID: 11400000, guid: 04fa6edc3a192cb4f93343c0a38402b3, type: 2}
   - {fileID: 11400000, guid: 4c10145c00691e34ba28f96992e2695e, type: 2}
-  - {fileID: 11400000, guid: 7153427ab6dfc754fbc4dd729443a2ad, type: 2}
-  startRoom: {fileID: 2311430981789467293, guid: 5d3f422335366e44eae14e32834f6f55, type: 3}
+  startRoom: {fileID: 6264039846958800854, guid: 928ef1da544ecfa43bd009b38523ac92, type: 3}
   bossRoom: {fileID: 0}
   shopRoom: {fileID: 0}
   treasureRoom: {fileID: 0}

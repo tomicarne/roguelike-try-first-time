@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.8037735, g: 0.16833748, b: 0.16833748, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4629228229230270004, guid: 4f06ebf0e3cdd0c40a948f47b3133bc1, type: 3}
   bulletSpeed: 10
   fireCooldown: 1.5
-  animator: {fileID: 0}
+  animator: {fileID: 1827235966437167377}
   isActive: 0
 --- !u!114 &5717947472584969098
 MonoBehaviour:
@@ -230,8 +230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944d30747e343484ca63f85dfe75c448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
-  isActive: 0
 --- !u!95 &1827235966437167377
 Animator:
   serializedVersion: 7
@@ -242,7 +240,7 @@ Animator:
   m_GameObject: {fileID: 461471812722373683}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8eb46da2ed5ab5c498f621121aae759d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 216cd7b9e20d5474cbbcb0bcf07a5676, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -534,7 +532,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5922491040822337220}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

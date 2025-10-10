@@ -1,0 +1,1122 @@
+fileFormatVersion: 2
+guid: ecb95487f248f994592d3f692a5022d5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8146014115029691241
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_0
+  - first:
+      213: -6816695935782792635
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_1
+  - first:
+      213: -7522716014103050835
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_2
+  - first:
+      213: 4944939963641440057
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_3
+  - first:
+      213: -4775709108734794627
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_4
+  - first:
+      213: 8267287867040862836
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_5
+  - first:
+      213: -8630012136578907528
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_6
+  - first:
+      213: -2443186526774615564
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_7
+  - first:
+      213: 3801649952912060922
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_8
+  - first:
+      213: 5401507201530715474
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_9
+  - first:
+      213: 1572971588509782214
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_10
+  - first:
+      213: 6411332845661674580
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_11
+  - first:
+      213: -8881930381484778927
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_12
+  - first:
+      213: -6738257766896506838
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_13
+  - first:
+      213: 8471441564850061527
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_14
+  - first:
+      213: 8408401588006798173
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_15
+  - first:
+      213: -5267795582421583022
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_16
+  - first:
+      213: 863814182590106282
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_17
+  - first:
+      213: -3757529994142389201
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_18
+  - first:
+      213: -8054254724684226527
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_19
+  - first:
+      213: -7728705143514065924
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_20
+  - first:
+      213: 7030999849551679456
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_21
+  - first:
+      213: 5770441249788069022
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_22
+  - first:
+      213: -4771496410355715662
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_23
+  - first:
+      213: 5108738923757042326
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_24
+  - first:
+      213: 4330833164294522960
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_25
+  - first:
+      213: 8942136107168739719
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_26
+  - first:
+      213: -1978755205854906069
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_27
+  - first:
+      213: 41244528166737163
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_28
+  - first:
+      213: 5917361175564050500
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_29
+  - first:
+      213: 4762570876038221769
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_30
+  - first:
+      213: 2311933316036184157
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_31
+  - first:
+      213: 967923202398867553
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_32
+  - first:
+      213: -1883546651605496736
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_33
+  - first:
+      213: -8216247621005368207
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_34
+  - first:
+      213: -4007132999094751630
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_35
+  - first:
+      213: 5444147255234901538
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_36
+  - first:
+      213: -626717157257705454
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_37
+  - first:
+      213: -2428440667451861392
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_38
+  - first:
+      213: -7012036540677635420
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_39
+  - first:
+      213: -6878630757710004539
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_40
+  - first:
+      213: 1061411243141467356
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_41
+  - first:
+      213: -4750597336741971311
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_42
+  - first:
+      213: -3917786034993390982
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_43
+  - first:
+      213: -5216674834316811365
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_44
+  - first:
+      213: 699911042978398266
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_45
+  - first:
+      213: -938218609368929745
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_46
+  - first:
+      213: -6340028664562894796
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_47
+  - first:
+      213: 565658226353002854
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_48
+  - first:
+      213: 2263044715794903233
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_49
+  - first:
+      213: 916234513812943724
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_50
+  - first:
+      213: 721003397928619612
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_51
+  - first:
+      213: 4649369922192368800
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_52
+  - first:
+      213: -972946566729077309
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_53
+  - first:
+      213: 4384050588327009586
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_54
+  - first:
+      213: 6196412401367530514
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_55
+  - first:
+      213: -5900562548752886870
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_56
+  - first:
+      213: 4482384885359086545
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_57
+  - first:
+      213: 6895401616220446043
+    second: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_58
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 525
+        width: 119
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7945652625b83fe80800000000000000
+      internalID: -8146014115029691241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_1
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 525
+        width: 119
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54251dda92b3661a0800000000000000
+      internalID: -6816695935782792635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_2
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 525
+        width: 119
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da5ce3964a1f99790800000000000000
+      internalID: -7522716014103050835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_4
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 525
+        width: 119
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d74e34f4ed549bdb0800000000000000
+      internalID: -4775709108734794627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_5
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 525
+        width: 118
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4721eda538e4bb270800000000000000
+      internalID: 8267287867040862836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_6
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 525
+        width: 119
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87287ef7fa90c3880800000000000000
+      internalID: -8630012136578907528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_7
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 525
+        width: 114
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f124976cce081ed0800000000000000
+      internalID: -2443186526774615564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_8
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 525
+        width: 119
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af134bb7d7c22c430800000000000000
+      internalID: 3801649952912060922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_9
+      rect:
+        serializedVersion: 2
+        x: 1453
+        y: 525
+        width: 119
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25dd3fe6e2206fa40800000000000000
+      internalID: 5401507201530715474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_10
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 347
+        width: 99
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c058e6635154d510800000000000000
+      internalID: 1572971588509782214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_11
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 346
+        width: 104
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45c55722141a9f850800000000000000
+      internalID: 6411332845661674580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_13
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 348
+        width: 103
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a28ed170346ec72a0800000000000000
+      internalID: -6738257766896506838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_15
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 348
+        width: 94
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d53c9f5d1b4a0b470800000000000000
+      internalID: 8408401588006798173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_17
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 350
+        width: 99
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaa4a312c62ecfb00800000000000000
+      internalID: 863814182590106282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_19
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 346
+        width: 109
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1206fac400a893090800000000000000
+      internalID: -8054254724684226527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_21
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 347
+        width: 109
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ef4a508c11239160800000000000000
+      internalID: 7030999849551679456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_22
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 347
+        width: 108
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9401ea5eb9b41050800000000000000
+      internalID: 5770441249788069022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_23
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 347
+        width: 104
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b132b59b4d38cdb0800000000000000
+      internalID: -4771496410355715662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_28
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 170
+        width: 118
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b059e4a0ea7829000800000000000000
+      internalID: 41244528166737163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_31
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 170
+        width: 117
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d584abe0a13a51020800000000000000
+      internalID: 2311933316036184157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_32
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 170
+        width: 118
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 160d7d83601ce6d00800000000000000
+      internalID: 967923202398867553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_33
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 170
+        width: 118
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06c8d21cc4c4cd5e0800000000000000
+      internalID: -1883546651605496736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_34
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 170
+        width: 114
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 174a35bf1560afd80800000000000000
+      internalID: -8216247621005368207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_35
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 170
+        width: 119
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27e263d94cdc368c0800000000000000
+      internalID: -4007132999094751630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_36
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 170
+        width: 114
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 226b135951f7d8b40800000000000000
+      internalID: 5444147255234901538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_37
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 170
+        width: 119
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2180303e0147d47f0800000000000000
+      internalID: -626717157257705454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_38
+      rect:
+        serializedVersion: 2
+        x: 1453
+        y: 170
+        width: 119
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0765b6254127c4ed0800000000000000
+      internalID: -2428440667451861392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_39
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 0
+        width: 93
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a2c9d8eaed30be90800000000000000
+      internalID: -7012036540677635420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_40
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 0
+        width: 109
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ce7e9935c13a80a0800000000000000
+      internalID: -6878630757710004539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_41
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 0
+        width: 93
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdc8d0ce6e3eabe00800000000000000
+      internalID: 1061411243141467356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_42
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 0
+        width: 99
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19af39854ec721eb0800000000000000
+      internalID: -4750597336741971311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_43
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 0
+        width: 106
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7a9b36cb5a31a9c0800000000000000
+      internalID: -3917786034993390982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_44
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 0
+        width: 104
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b93a3d790e5aa97b0800000000000000
+      internalID: -5216674834316811365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_45
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 0
+        width: 109
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a30c913a26596b900800000000000000
+      internalID: 699911042978398266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_46
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 0
+        width: 108
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2a67ea4527caf2f0800000000000000
+      internalID: -938218609368929745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_47
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 0
+        width: 142
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4383fee3581b308a0800000000000000
+      internalID: -6340028664562894796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 33a09a02a8ba6cc46a86ff59ff49bc55
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_0: -8146014115029691241
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_1: -6816695935782792635
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_10: 1572971588509782214
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_11: 6411332845661674580
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_13: -6738257766896506838
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_15: 8408401588006798173
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_17: 863814182590106282
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_19: -8054254724684226527
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_2: -7522716014103050835
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_21: 7030999849551679456
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_22: 5770441249788069022
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_23: -4771496410355715662
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_28: 41244528166737163
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_31: 2311933316036184157
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_32: 967923202398867553
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_33: -1883546651605496736
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_34: -8216247621005368207
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_35: -4007132999094751630
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_36: 5444147255234901538
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_37: -626717157257705454
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_38: -2428440667451861392
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_39: -7012036540677635420
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_4: -4775709108734794627
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_40: -6878630757710004539
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_41: 1061411243141467356
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_42: -4750597336741971311
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_43: -3917786034993390982
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_44: -5216674834316811365
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_45: 699911042978398266
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_46: -938218609368929745
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_47: -6340028664562894796
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_5: 8267287867040862836
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_6: -8630012136578907528
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_7: -2443186526774615564
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_8: 3801649952912060922
+      tinywow_WhatsApp Image 2025-10-10 at 01.14.55_1f2a776b_85021761_9: 5401507201530715474
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
